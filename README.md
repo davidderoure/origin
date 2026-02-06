@@ -1,6 +1,18 @@
 # origin
 Prototype recommender code for ORIGIN project
 
+# Web server for prototyping
+
+pip install fastapi uvicorn
+
+Run the server:
+
+python server_web.py
+
+3. Open browser:
+
+http://localhost:8000
+
 # websocket mockup
 
 pip install fastapi uvicorn websockets
