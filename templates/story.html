@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="margin-bottom: 20px;">
+    <a href="{{ url_for('recommendations') }}" class="btn btn-secondary">← Back to Recommendations</a>
+</div>
+
+<h2>{{ story.title }}</h2>
+
+<div style="margin: 15px 0;">
+    <span class="theme-badge">{{ story.theme }}</span>
+    {% for tag in story.tags %}
+        <span class="tag">{{ tag }}</span>
+    {% endfor %}
+</div>
+
+<div class="story-content">
+    {{ content }}
+</div>
+
+{% if already_completed %}
+<div class="alert alert-success">
+    ✓ You've already completed this story!
+</div>
+{% else %}
+<form method="POST" action="{{ url_for('complete_story', story_id=story.id) }}">
+    <button type="submit" class="btn btn-success" style="font-size: 1.1em;">
+        ✓ Mark as Completed
+    </button>
+</form>
+{% endif %}
+
+<form method="POST" action="{{ url_for('favorite_story', story_id=story.id) }}" style="display: inline;">
+    <button type="submit" class="btn" style="background: #ffc107; color: #333;">
+        ⭐ Add to Favorites
+    </button>
+</form>
+
+<a href="{{ url_for('recommendations') }}" class="btn" style="margin-top: 20px;">
+    Find More Stories
+</a>
+{% endblock %}

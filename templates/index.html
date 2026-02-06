@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Welcome! 👋</h2>
+
+<div class="stats">
+    <div class="stat-box">
+        <div class="stat-number">{{ stats.stories_read }}</div>
+        <div class="stat-label">Stories Viewed</div>
+    </div>
+    <div class="stat-box">
+        <div class="stat-number">{{ stats.stories_completed }}</div>
+        <div class="stat-label">Stories Completed</div>
+    </div>
+    <div class="stat-box">
+        <div class="stat-number">{{ stats.favorites }}</div>
+        <div class="stat-label">Favorites</div>
+    </div>
+</div>
+
+{% if stats.last_completed %}
+<div class="alert alert-info">
+    Last completed: <strong>{{ stats.last_completed }}</strong>
+    {% if stats.mood_trend %}
+    <br>Your mood trend: <strong>{{ stats.mood_trend }}</strong>
+    {% endif %}
+</div>
+{% endif %}
+
+<h3>How are you feeling right now?</h3>
+<form method="POST" action="{{ url_for('set_mood') }}">
+    <div class="mood-selector">
+        <button type="submit" name="mood" value="1" class="mood-btn" title="Very Low (1)">😢</button>
+        <button type="submit" name="mood" value="2" class="mood-btn" title="Low (2)">😕</button>
+        <button type="submit" name="mood" value="3" class="mood-btn" title="Low-Medium (3)">😐</button>
+        <button type="submit" name="mood" value="4" class="mood-btn" title="Below Average (4)">🙂</button>
+        <button type="submit" name="mood" value="5" class="mood-btn" title="Average (5)">😊</button>
+        <button type="submit" name="mood" value="6" class="mood-btn" title="Above Average (6)">😄</button>
+        <button type="submit" name="mood" value="7" class="mood-btn" title="Good (7)">😃</button>
+        <button type="submit" name="mood" value="8" class="mood-btn" title="Very Good (8)">😁</button>
+        <button type="submit" name="mood" value="9" class="mood-btn" title="Great (9)">🤩</button>
+        <button type="submit" name="mood" value="10" class="mood-btn" title="Excellent (10)">🥳</button>
+    </div>
+</form>
+
+{% if current_mood %}
+<p style="margin-top: 10px; color: #667eea; font-weight: 600;">
+    Current mood: {{ current_mood }}/10
+</p>
+{% endif %}
+
+<h3>Recommendation Style</h3>
+<p style="color: #666; margin-bottom: 10px;">
+    Adjust how recommendations are generated:
+</p>
+<form method="POST" action="{{ url_for('set_slider') }}" id="sliderForm">
+    <div class="slider-container">
+        <input type="range" min="0" max="1" step="0.1" value="{{ recommendation_mix }}" 
+               class="slider" name="position" id="recommendationSlider">
+        <div class="slider-labels">
+            <span>🎯 Individual<br><small>Based on your history</small></span>
+            <span>👥 Others<br><small>Based on what others like</small></span>
+        </div>
+    </div>
+    <button type="submit" class="btn">Update Preference</button>
+</form>
+
+<div style="margin-top: 30px;">
+    <a href="{{ url_for('recommendations') }}" class="btn" style="font-size: 1.2em;">
+        🎯 Get Story Recommendations
+    </a>
+</div>
+
+<div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+    <p style="color: #666; font-size: 0.95em;">
+        <strong>Demo User ID:</strong> {{ user_id }}<br>
+        <small>This demo tracks your interactions to provide personalized recommendations. 
+        Click "Reset Demo" in the navigation to start fresh.</small>
+    </p>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Auto-submit slider form when value changes
+    document.getElementById('recommendationSlider').addEventListener('change', function() {
+        document.getElementById('sliderForm').submit();
+    });
+</script>
+{% endblock %}

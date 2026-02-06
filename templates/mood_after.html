@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>How do you feel after reading "{{ story.title }}"?</h2>
+
+{% if mood_before %}
+<p style="color: #666; margin: 15px 0;">
+    Your mood before: <strong>{{ mood_before }}/10</strong>
+</p>
+{% endif %}
+
+<form method="POST" action="{{ url_for('submit_mood_after', story_id=story.id) }}">
+    <div class="mood-selector">
+        <button type="submit" name="mood" value="1" class="mood-btn" title="Very Low (1)">😢</button>
+        <button type="submit" name="mood" value="2" class="mood-btn" title="Low (2)">😕</button>
+        <button type="submit" name="mood" value="3" class="mood-btn" title="Low-Medium (3)">😐</button>
+        <button type="submit" name="mood" value="4" class="mood-btn" title="Below Average (4)">🙂</button>
+        <button type="submit" name="mood" value="5" class="mood-btn" title="Average (5)">😊</button>
+        <button type="submit" name="mood" value="6" class="mood-btn" title="Above Average (6)">😄</button>
+        <button type="submit" name="mood" value="7" class="mood-btn" title="Good (7)">😃</button>
+        <button type="submit" name="mood" value="8" class="mood-btn" title="Very Good (8)">😁</button>
+        <button type="submit" name="mood" value="9" class="mood-btn" title="Great (9)">🤩</button>
+        <button type="submit" name="mood" value="10" class="mood-btn" title="Excellent (10)">🥳</button>
+    </div>
+</form>
+
+<div style="margin-top: 20px;">
+    <a href="{{ url_for('recommendations') }}" class="btn btn-secondary">Skip for now</a>
+</div>
+{% endblock %}

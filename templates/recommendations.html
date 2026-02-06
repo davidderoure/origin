@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>📖 Recommended Stories for You</h2>
+
+{% if recommendations %}
+    <p style="color: #666; margin-bottom: 20px;">
+        Based on your preferences, mood, and reading history, we think you'll enjoy these stories:
+    </p>
+    
+    {% for rec in recommendations %}
+    <div class="card story-card" onclick="window.location.href='{{ url_for('view_story', story_id=rec.id) }}'">
+        <div style="display: flex; justify-content: space-between; align-items: start;">
+            <div style="flex: 1;">
+                <h3 style="margin-top: 0;">{{ rec.title }}</h3>
+                <div style="margin: 10px 0;">
+                    <span class="theme-badge">{{ rec.theme }}</span>
+                    {% for tag in rec.tags %}
+                        <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <div>
+                <span class="score-badge">Score: {{ "%.1f"|format(rec.score) }}</span>
+            </div>
+        </div>
+        
+        {% if rec.avg_mood_change %}
+        <p style="margin: 10px 0; color: #555;">
+            Average mood change: 
+            <strong style="color: {% if rec.avg_mood_change > 0 %}#28a745{% else %}#dc3545{% endif %}">
+                {{ "%+.1f"|format(rec.avg_mood_change) }}
+            </strong>
+        </p>
+        {% endif %}
+        
+        {% if rec.reasons %}
+        <ul class="reason-list">
+            {% for reason in rec.reasons %}
+            <li>{{ reason }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        
+        <p style="margin-top: 10px; color: #667eea; font-weight: 600;">
+            Click to read this story →
+        </p>
+    </div>
+    {% endfor %}
+{% else %}
+    <div class="alert alert-info">
+        <p>No recommendations yet! Set your mood and we'll find stories perfect for you.</p>
+        <a href="{{ url_for('index') }}" class="btn" style="margin-top: 10px;">Set Your Mood</a>
+    </div>
+{% endif %}
+
+<div style="margin-top: 30px;">
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">← Back to Home</a>
+</div>
+{% endblock %}
