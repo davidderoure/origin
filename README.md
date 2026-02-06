@@ -1,6 +1,14 @@
 # origin
 Prototype recommender code for ORIGIN project
 
+# Demo
+
+pip install flask
+
+python app.py
+
+Open your browser to: http://localhost:5000
+
 # Web server for prototyping
 
 pip install fastapi uvicorn
