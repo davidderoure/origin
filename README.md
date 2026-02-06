@@ -12,3 +12,15 @@ python server.py
 Run the client in another terminal:
 
 python client.py
+
+# gRPC mockup
+
+python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. contract.proto
+
+Run the server:
+
+python server.py
+
+Run the client in another terminal:
+
+python client.py
