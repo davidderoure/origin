@@ -1,10 +1,12 @@
+# app.py - Flask web server for Story Recommender Demo
+
 from flask import Flask, render_template, request, redirect, url_for, session
 from datetime import datetime
 import json
 import os
 
 # Import your recommender system
-from rec2 import StoryRecommender, AnalyticsEvent, MoodScore
+from recommender import StoryRecommender, AnalyticsEvent, MoodScore
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-change-in-production'
@@ -48,60 +50,161 @@ STORY_CONTENT = {
         Every morning, the flowers would bloom with such radiance that passersby would stop 
         and smile, forgetting their worries for just a moment. Maria tended this garden with 
         love, and the garden returned that love tenfold, bringing joy to everyone who visited.
+        
+        The roses spoke in colors, the lavender hummed with bees, and the sunflowers turned 
+        their faces to follow the light. Children would press their noses against the fence, 
+        watching butterflies dance from petal to petal. Even on the grayest days, the garden 
+        seemed to hold its own sunshine.
+        
+        Maria knew each plant by name, and they seemed to know her too. When she was sad, 
+        the jasmine bloomed more sweetly. When she was happy, the daisies stood taller. 
+        This was more than a garden—it was a place where happiness grew as surely as the 
+        flowers themselves.
     """,
     "story2": """
         The clock struck midnight as Detective Chen entered the abandoned mansion. 
         The case had gone cold three years ago, but new evidence suggested the answers 
         were hidden here all along. Shadows danced on the walls, and every creaking 
         floorboard seemed to whisper secrets that had been buried for too long.
+        
+        The mansion had belonged to the Blackwood family, known for their wealth and their 
+        mysteries. On the night of the disappearance, seven people had entered this house 
+        for a dinner party. Only six had left. The seventh, Jonathan Blackwood, had vanished 
+        without a trace.
+        
+        Chen's flashlight cut through the darkness, revealing dusty furniture covered in 
+        white sheets like ghosts. In the library, she found it—a hidden compartment behind 
+        a bookshelf, and inside, a journal. As she read the first page, her blood ran cold. 
+        Everything they thought they knew about that night was wrong.
     """,
     "story3": """
         Summer arrived like a promise kept. The days were long and golden, filled with 
         laughter and the taste of fresh strawberries. Children played in the sprinklers, 
         and neighbors gathered for evening barbecues. It was a time when everything felt 
         possible, and happiness was as simple as sunshine on your face.
+        
+        The ice cream truck's jingle became the neighborhood's theme song. Kids ran through 
+        the streets with popsicles melting down their arms, creating rainbow trails. Parents 
+        sat on porches with glasses of lemonade, watching fireflies begin their evening dance.
+        
+        On these perfect summer evenings, time seemed to slow down. Old friends reconnected, 
+        new friendships bloomed, and everyone remembered what it felt like to be truly content. 
+        The world, for these precious months, was exactly as it should be—warm, bright, and 
+        full of joy.
     """,
     "story4": """
         Inspector Morris had solved countless cases, but this one was different. 
         The clues formed a pattern that seemed almost too clever, as if the perpetrator 
         wanted to be caught—but only by someone smart enough to deserve it. Each piece 
         of evidence led to another question, and Morris felt both frustrated and thrilled.
+        
+        The paintings stolen from the museum weren't the most valuable ones. The security 
+        guard who'd been knocked out had been standing in exactly the wrong place—or was it 
+        the right place? The ransom note was written in a code that referenced obscure literary 
+        works only a handful of people would recognize.
+        
+        Morris spread the evidence across her desk, moving pieces like a chess game. And then 
+        she saw it—the pattern within the pattern. The thief wasn't after the paintings at all. 
+        This was about something much bigger, and Morris was the only one who could see it. 
+        She smiled. Game on.
     """,
     "story5": """
         High above the valley, where the air was thin and pure, there stood a small cabin. 
         Here, time moved differently. The mountains spoke in the language of wind and stone, 
         teaching patience to those who would listen. Sarah came here to find peace, 
         and the mountains welcomed her like an old friend.
+        
+        Each morning, she woke to see peaks painted pink by the sunrise. Eagles soared on 
+        thermals, their cries echoing across the valleys. The only sounds were natural—
+        wind through pine trees, water trickling over rocks, her own steady breathing.
+        
+        In the city, Sarah had forgotten how to hear silence. Here, she remembered. She 
+        remembered how to sit still, how to watch clouds without checking the time, how to 
+        feel small in a way that made her feel connected to something vast and eternal. 
+        The mountain asked nothing of her except to be present. And so she was.
     """,
     "story6": """
         The city never slept, and neither did Alex. From rooftop parties to late-night 
         food trucks, from street art to underground music venues, the urban landscape 
         was an endless adventure. Neon lights reflected in rain-puddles, and every corner 
         held a new story waiting to unfold.
+        
+        Tonight, Alex was chasing the perfect shot—the photographer's white whale. The way 
+        the subway steam caught the streetlights, the contrast between the bright storefronts 
+        and the dark alleys, the faces of people living their own epic stories. The city was 
+        a living canvas, constantly repainting itself.
+        
+        At 3 AM, from a fire escape in the East Side, Alex captured it—the moment when the 
+        city revealed its soul. In the frame: a taxi's red taillights, a couple sharing an 
+        umbrella, steam rising from a manhole, and a thousand lit windows each hiding a 
+        different world. This was why Alex loved the city. It never stopped creating.
     """,
     "story7": """
         The waves rolled in with hypnotic rhythm, each one carrying away a little more 
         of yesterday's worries. Elena walked barefoot along the shore, letting the cool 
         water wash over her feet. The ocean had always been her sanctuary, a place where 
         she could breathe deeply and remember what truly mattered.
+        
+        Seagulls wheeled overhead, their calls mixing with the endless song of the sea. 
+        The horizon stretched forever, reminding her that there was always more world to 
+        explore, more possibilities to discover. The salt air cleared her mind like nothing 
+        else could.
+        
+        She found a piece of sea glass, worn smooth by thousands of tides—proof that time 
+        and patience could transform sharp edges into something beautiful. Elena pocketed 
+        it and smiled. The ocean was teaching her, as it always did. Let the waves come, 
+        let them go. What matters will remain.
     """,
     "story8": """
         The café was a haven in the concrete jungle. Warm light spilled from its windows 
         onto the dark street outside. Inside, people sat quietly with their thoughts, 
         their books, their late-night conversations. The barista knew everyone's order 
         by heart, and the coffee was always perfect.
+        
+        Marcus had been coming here for five years, always sitting at the same corner table. 
+        He'd written half a novel here, had three first dates (one of them stuck), and made 
+        friends with the other regulars—all without planning any of it. The café just had 
+        that effect on people.
+        
+        Tonight, as rain pattered against the window, Marcus looked around at the other 
+        patrons. A student cramming for exams. An elderly woman with a crossword puzzle. 
+        Two friends laughing over shared secrets. Strangers, all of them, yet somehow 
+        family. The café held them all in its warm embrace, a small island of light in 
+        the rushing river of the city.
     """,
     "story9": """
         Deep in the ancient forest, where sunlight filtered through a canopy of leaves, 
         there was magic in the air. Not the flashy kind from storybooks, but the subtle 
         magic of growth, renewal, and connection. The trees whispered stories to those 
         who knew how to listen, and the forest held mysteries that time had forgotten.
+        
+        Lily had been walking these paths since childhood, but today she saw something new—
+        a circle of mushrooms glowing faintly in the dim light. Fairy ring, her grandmother 
+        had called them. Places where the veil between worlds grew thin. She stepped closer, 
+        and the air shimmered.
+        
+        The forest revealed itself then, not as a collection of trees but as a living network, 
+        each plant connected to every other through roots and fungus, sharing nutrients and 
+        information. Lily stood in the center of it all and felt the forest's ancient 
+        consciousness brush against her own. She was not separate. She had never been separate. 
+        She was part of the forest, and it was part of her.
     """,
     "story10": """
         The city's heartbeat was fastest here, in the downtown core where ambition 
         and energy collided. Jordan thrived in this environment, drawing inspiration 
         from the constant motion, the diverse faces, the sense that anything could happen. 
         This was where dreams were made, where the future was being written in real-time.
+        
+        From the startup office on the 30th floor, Jordan could see the whole sprawl—
+        the financial district's glass towers, the historic neighborhoods with their brownstones, 
+        the river cutting through it all like a silver thread. Somewhere down there, a thousand 
+        stories were unfolding simultaneously.
+        
+        The energy of the city flowed through Jordan like electricity. A meeting with investors. 
+        A breakthrough in the code. A chance encounter with a mentor in an elevator. The city 
+        rewarded those who moved fast, who stayed hungry, who believed that the impossible was 
+        just a problem that hadn't been solved yet. Jordan grinned and dove back into work. 
+        The urban pulse was calling, and there was so much left to build.
     """
 }
 
@@ -270,11 +373,12 @@ def complete_story(story_id):
     )
     recommender.add_event(event)
     
-    return redirect(url_for('mood_after_story', story_id=story_id))
+    # Redirect to completion page with options
+    return redirect(url_for('story_completed', story_id=story_id))
 
-@app.route('/mood_after/<story_id>')
-def mood_after_story(story_id):
-    """Ask for mood after completing a story"""
+@app.route('/story_completed/<story_id>')
+def story_completed(story_id):
+    """Show post-reading options (mood and like)"""
     story = recommender.stories.get(story_id)
     if not story:
         return redirect(url_for('index'))
@@ -283,9 +387,13 @@ def mood_after_story(story_id):
     user = recommender.users.get(user_id)
     mood_before = user.current_mood.value if user and user.current_mood else None
     
-    return render_template('mood_after.html', 
+    # Check if already liked
+    already_liked = user and story_id in user.favorited_stories
+    
+    return render_template('story_completed.html', 
                          story=story, 
-                         mood_before=mood_before)
+                         mood_before=mood_before,
+                         already_liked=already_liked)
 
 @app.route('/submit_mood_after/<story_id>', methods=['POST'])
 def submit_mood_after(story_id):
@@ -302,11 +410,15 @@ def submit_mood_after(story_id):
     )
     recommender.add_event(event)
     
+    # Check where to redirect
+    next_page = request.form.get('next', 'recommendations')
+    if next_page == 'story_completed':
+        return redirect(url_for('story_completed', story_id=story_id))
     return redirect(url_for('recommendations'))
 
-@app.route('/favorite/<story_id>', methods=['POST'])
-def favorite_story(story_id):
-    """Add story to favorites"""
+@app.route('/like_story/<story_id>', methods=['POST'])
+def like_story(story_id):
+    """Like a story (same as favorite)"""
     user_id = get_user_id()
     
     event = AnalyticsEvent(
@@ -317,7 +429,13 @@ def favorite_story(story_id):
     )
     recommender.add_event(event)
     
-    return redirect(url_for('view_story', story_id=story_id))
+    # Redirect back to where the user came from
+    return redirect(request.referrer or url_for('recommendations'))
+
+@app.route('/favorite/<story_id>', methods=['POST'])
+def favorite_story(story_id):
+    """Add story to favorites (legacy route, redirects to like_story)"""
+    return like_story(story_id)
 
 @app.route('/insights')
 def insights():
