@@ -29,3 +29,11 @@ python server.py
 Run the client in another terminal:
 
 python client.py
+
+# named pipes and sockets
+
+python server_socket.py
+
+Run the client in another terminal:
+
+python client_socket.py
