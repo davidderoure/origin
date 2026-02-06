@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="text-align: center; margin-bottom: 30px;">
+    <h2 style="color: #28a745;">✓ Story Completed!</h2>
+    <h3 style="color: #667eea; margin-top: 10px;">{{ story.title }}</h3>
+</div>
+
+<div class="card" style="background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%); border: none;">
+    <h3 style="margin-top: 0;">How was your experience?</h3>
+    <p style="color: #666;">Help us recommend better stories by sharing your feedback (optional).</p>
+</div>
+
+<!-- Mood Section -->
+<div class="card">
+    <h3 style="margin-top: 0;">😊 How do you feel now?</h3>
+    
+    {% if mood_before %}
+    <p style="color: #666; margin-bottom: 15px;">
+        Your mood before reading: <strong>{{ mood_before }}/10</strong>
+    </p>
+    {% endif %}
+    
+    <form method="POST" action="{{ url_for('submit_mood_after', story_id=story.id) }}">
+        <input type="hidden" name="next" value="story_completed">
+        <div class="mood-selector">
+            <button type="submit" name="mood" value="1" class="mood-btn" title="Very Low (1)">😢</button>
+            <button type="submit" name="mood" value="2" class="mood-btn" title="Low (2)">😕</button>
