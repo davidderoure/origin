@@ -1,4 +1,4 @@
-# server_socket.py - Cross-platform using Unix Domain Sockets
+# server_socket.py - Fixed version
 import socket
 import json
 import struct
@@ -12,10 +12,10 @@ class SocketServer:
         self.user_preferences = {}
         self.client_socket = None
         self.running = False
+        self.send_lock = threading.Lock()  # Add lock for thread-safe sending
     
     def start(self):
         """Start the Unix domain socket server"""
-        # Remove existing socket file
         if os.path.exists(self.socket_path):
             os.unlink(self.socket_path)
         
@@ -32,30 +32,45 @@ class SocketServer:
         self._listen()
     
     def _send_message(self, message):
-        """Send a message with length prefix"""
-        data = json.dumps(message).encode('utf-8')
-        length_prefix = struct.pack('I', len(data))
-        self.client_socket.sendall(length_prefix + data)
-        print(f"[Server] Sent: {message.get('type')}")
+        """Send a message with length prefix (thread-safe)"""
+        with self.send_lock:
+            try:
+                data = json.dumps(message).encode('utf-8')
+                length_prefix = struct.pack('I', len(data))
+                self.client_socket.sendall(length_prefix + data)
+                print(f"[Server] Sent: {message.get('type')}")
+            except Exception as e:
+                print(f"[Server] Error sending message: {e}")
     
     def _receive_message(self):
         """Receive a message"""
-        # Read length prefix
-        length_data = self.client_socket.recv(4)
-        if len(length_data) < 4:
+        try:
+            # Read exactly 4 bytes for length
+            length_data = self._recv_exact(4)
+            if not length_data:
+                return None
+            
+            message_length = struct.unpack('I', length_data)[0]
+            
+            # Read exactly message_length bytes
+            data = self._recv_exact(message_length)
+            if not data:
+                return None
+            
+            return json.loads(data.decode('utf-8'))
+        except Exception as e:
+            print(f"[Server] Error receiving message: {e}")
             return None
-        
-        message_length = struct.unpack('I', length_data)[0]
-        
-        # Read the message
+    
+    def _recv_exact(self, num_bytes):
+        """Receive exactly num_bytes from socket"""
         data = b''
-        while len(data) < message_length:
-            chunk = self.client_socket.recv(message_length - len(data))
+        while len(data) < num_bytes:
+            chunk = self.client_socket.recv(num_bytes - len(data))
             if not chunk:
                 return None
             data += chunk
-        
-        return json.loads(data.decode('utf-8'))
+        return data
     
     def _listen(self):
         """Listen for client messages"""
@@ -63,6 +78,7 @@ class SocketServer:
             while self.running:
                 message = self._receive_message()
                 if not message:
+                    print("[Server] Client disconnected")
                     break
                 
                 msg_type = message.get('type')
@@ -113,7 +129,10 @@ class SocketServer:
         """Stop the server"""
         self.running = False
         if self.client_socket:
-            self.client_socket.close()
+            try:
+                self.client_socket.close()
+            except:
+                pass
         if os.path.exists(self.socket_path):
             os.unlink(self.socket_path)
         print("[Server] Stopped")
