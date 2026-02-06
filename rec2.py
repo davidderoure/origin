@@ -1269,8 +1269,8 @@ if __name__ == "__main__":
     
     print(f"\nUser {user_id}'s Recent Sequences:")
     for seq in insights.get('user_sequences', [])[-5:]:
-        print(f"  {seq['from']:20} → {seq['to']:20} " +
-              f"(mood Δ: {seq['mood_delta']:+.2f if seq['mood_delta'] else 'N/A'})")
+        mood_str = f"{seq['mood_delta']:+.2f}" if seq['mood_delta'] is not None else 'N/A'
+        print(f"  {seq['from']:20} → {seq['to']:20} (mood Δ: {mood_str})")
     
     print("\n" + "=" * 80)
     print("Key Learnings:")
