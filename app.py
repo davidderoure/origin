@@ -6,7 +6,7 @@ import json
 import os
 
 # Import your recommender system
-from recommender import StoryRecommender, AnalyticsEvent, MoodScore
+from rec2 import StoryRecommender, AnalyticsEvent, MoodScore
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-change-in-production'
@@ -20,25 +20,25 @@ recommender = StoryRecommender(
 
 # Add sample stories
 def initialize_stories():
-    recommender.add_story("story1", "The Happy Garden", "nature", 
-                         ["uplifting", "peaceful", "hopeful"])
-    recommender.add_story("story2", "Dark Mystery", "mystery", 
-                         ["thriller", "suspense", "intense"])
-    recommender.add_story("story3", "Summer Joy", "nature", 
-                         ["uplifting", "warm", "cheerful"])
-    recommender.add_story("story4", "The Detective", "mystery", 
-                         ["investigation", "clever", "intriguing"])
-    recommender.add_story("story5", "Mountain Peace", "nature", 
-                         ["meditative", "calm", "serene"])
-    recommender.add_story("story6", "City Lights", "urban", 
-                         ["energetic", "modern", "vibrant"])
-    recommender.add_story("story7", "Ocean Waves", "nature", 
-                         ["calming", "peaceful", "soothing"])
-    recommender.add_story("story8", "Night Cafe", "urban", 
-                         ["contemplative", "cozy", "intimate"])
-    recommender.add_story("story9", "Forest Whispers", "nature", 
-                         ["mystical", "peaceful", "enchanting"])
-    recommender.add_story("story10", "Urban Pulse", "urban", 
+    recommender.add_story("story1", "The Alfred Jewel", "ancient", 
+                         ["mysterious", "royal", "craftsmanship"])
+    recommender.add_story("story2", "The Last Dodo", "natural", 
+                         ["extinct", "haunting", "loss"])
+    recommender.add_story("story3", "Guy Fawkes' Lantern", "medieval", 
+                         ["conspiracy", "history", "rebellion"])
+    recommender.add_story("story4", "The Scorpion Macehead", "ancient", 
+                         ["Egyptian", "powerful", "discovery"])
+    recommender.add_story("story5", "Powhatan's Mantle", "cultural", 
+                         ["ceremonial", "heritage", "connection"])
+    recommender.add_story("story6", "The Abingdon Sword", "medieval", 
+                         ["warrior", "crafted", "legendary"])
+    recommender.add_story("story7", "Tradescant's Ark", "natural", 
+                         ["curious", "wondrous", "collection"])
+    recommender.add_story("story8", "The Parian Marble", "ancient", 
+                         ["chronological", "scholarly", "timeless"])
+    recommender.add_story("story9", "Ceremonial Axes", "cultural", 
+                         ["ritual", "spiritual", "ancestral"])
+    recommender.add_story("story10", "Einstein's Blackboard", "scientific", 
                          ["exciting", "fast-paced", "dynamic"])
 
 initialize_stories()
@@ -46,165 +46,198 @@ initialize_stories()
 # Story content (for demo purposes)
 STORY_CONTENT = {
     "story1": """
-        In a small corner of the city, there lived a garden that seemed to know secrets. 
-        Every morning, the flowers would bloom with such radiance that passersby would stop 
-        and smile, forgetting their worries for just a moment. Maria tended this garden with 
-        love, and the garden returned that love tenfold, bringing joy to everyone who visited.
+        In the Ashmolean Museum, behind glass that has protected it for centuries, 
+        lies the Alfred Jewel—a masterpiece of Anglo-Saxon craftsmanship. Barely 
+        larger than a thumb, this golden artifact bears the inscription "AELFRED MEC 
+        HEHT GEWYRCAN"—Alfred ordered me to be made.
         
-        The roses spoke in colors, the lavender hummed with bees, and the sunflowers turned 
-        their faces to follow the light. Children would press their noses against the fence, 
-        watching butterflies dance from petal to petal. Even on the grayest days, the garden 
-        seemed to hold its own sunshine.
+        King Alfred the Great commissioned this jewel over a thousand years ago, perhaps 
+        as a pointer for reading sacred texts. The enamel figure gazes out with knowing 
+        eyes, holding flowering rods, forever frozen in a moment of medieval artistry. 
+        Gold, enamel, and rock crystal—materials that would outlast kingdoms.
         
-        Maria knew each plant by name, and they seemed to know her too. When she was sad, 
-        the jasmine bloomed more sweetly. When she was happy, the daisies stood taller. 
-        This was more than a garden—it was a place where happiness grew as surely as the 
-        flowers themselves.
+        Discovered in 1693 in a Somerset field, the jewel had waited centuries in the 
+        earth. What stories could it tell? Of the king who held it, of the craftsman 
+        who shaped it, of the battles and books and prayers it witnessed. In your 
+        reflection in its glass case, you become part of its endless story—another 
+        pair of eyes that has beheld its beauty, another moment in its long existence.
     """,
     "story2": """
-        The clock struck midnight as Detective Chen entered the abandoned mansion. 
-        The case had gone cold three years ago, but new evidence suggested the answers 
-        were hidden here all along. Shadows danced on the walls, and every creaking 
-        floorboard seemed to whisper secrets that had been buried for too long.
+        The Oxford Dodo stands in the Museum of Natural History, the most famous 
+        extinct bird in the world. Unlike the complete skeletons elsewhere, this is 
+        something more poignant—the only soft tissue remains of a dodo anywhere. 
+        A head and a foot, dried and preserved, the last physical remnants of a 
+        species that vanished from Earth in the 1660s.
         
-        The mansion had belonged to the Blackwood family, known for their wealth and their 
-        mysteries. On the night of the disappearance, seven people had entered this house 
-        for a dinner party. Only six had left. The seventh, Jonathan Blackwood, had vanished 
-        without a trace.
+        These fragments once belonged to the Tradescant collection, displayed as a 
+        curiosity when dodos still lived on Mauritius. The museum's founder almost 
+        had the deteriorating specimen destroyed, but an assistant saved the head and 
+        foot—the only reason we can see real dodo tissue today. Every other dodo is 
+        bones, or paintings, or descriptions.
         
-        Chen's flashlight cut through the darkness, revealing dusty furniture covered in 
-        white sheets like ghosts. In the library, she found it—a hidden compartment behind 
-        a bookshelf, and inside, a journal. As she read the first page, her blood ran cold. 
-        Everything they thought they knew about that night was wrong.
+        Standing before this display, you're looking at absence made visible. The dodo 
+        became extinct before science understood extinction was possible. This bird's 
+        remnants ask a question that echoes across centuries: What are we losing now 
+        that we don't yet realize we should save? The dodo watches with its preserved 
+        eye, a witness to its own species' ending, a warning written in feathers and bone.
     """,
     "story3": """
-        Summer arrived like a promise kept. The days were long and golden, filled with 
-        laughter and the taste of fresh strawberries. Children played in the sprinklers, 
-        and neighbors gathered for evening barbecues. It was a time when everything felt 
-        possible, and happiness was as simple as sunshine on your face.
+        In the Ashmolean Museum rests an unassuming lantern—metal, practical, 
+        unremarkable except for one detail: it was carried by Guy Fawkes on the night 
+        of November 5th, 1605, when he was discovered in the cellars beneath Parliament, 
+        guarding thirty-six barrels of gunpowder.
         
-        The ice cream truck's jingle became the neighborhood's theme song. Kids ran through 
-        the streets with popsicles melting down their arms, creating rainbow trails. Parents 
-        sat on porches with glasses of lemonade, watching fireflies begin their evening dance.
+        Imagine the flickering flame inside this lantern, casting shadows on stone walls, 
+        illuminating the face of a man who believed he was about to change history with 
+        fire. The Gunpowder Plot failed, of course. Fawkes was arrested, tortured, and 
+        executed. But his lantern survived.
         
-        On these perfect summer evenings, time seemed to slow down. Old friends reconnected, 
-        new friendships bloomed, and everyone remembered what it felt like to be truly content. 
-        The world, for these precious months, was exactly as it should be—warm, bright, and 
-        full of joy.
+        For over four hundred years, this simple light-bearer has endured. It witnessed 
+        the night when England's entire government nearly vanished in an explosion. It 
+        was there in the darkness of conspiracy, in the moment of discovery, in the 
+        instant when rebellion became capture. Every November 5th, when bonfires light 
+        the British sky, this lantern sits quiet in its case—the authentic flame that 
+        nearly ignited revolution, now cold, now still, now only light in memory.
     """,
     "story4": """
-        Inspector Morris had solved countless cases, but this one was different. 
-        The clues formed a pattern that seemed almost too clever, as if the perpetrator 
-        wanted to be caught—but only by someone smart enough to deserve it. Each piece 
-        of evidence led to another question, and Morris felt both frustrated and thrilled.
+        The Scorpion Macehead sits among Egyptian treasures in the Ashmolean, carved 
+        from limestone over 5,000 years ago. It depicts a king—possibly named Scorpion, 
+        or perhaps the scorpion is merely a symbol—performing a ceremonial act: cutting 
+        an irrigation canal, bringing water and life to the land.
         
-        The paintings stolen from the museum weren't the most valuable ones. The security 
-        guard who'd been knocked out had been standing in exactly the wrong place—or was it 
-        the right place? The ransom note was written in a code that referenced obscure literary 
-        works only a handful of people would recognize.
+        This was made before the pyramids, before hieroglyphic writing was fully 
+        developed, in an Egypt that was still becoming Egypt. The carving shows 
+        attendants, standards, birds—a snapshot of a world that existed fifty centuries 
+        before Instagram, yet the artist's skill still speaks clearly across that 
+        impossible gulf of time.
         
-        Morris spread the evidence across her desk, moving pieces like a chess game. And then 
-        she saw it—the pattern within the pattern. The thief wasn't after the paintings at all. 
-        This was about something much bigger, and Morris was the only one who could see it. 
-        She smiled. Game on.
+        Look closely at the scorpion symbol above the king's head. Scholars debate who 
+        this ruler was, whether he united Upper Egypt, whether he was the same king 
+        depicted on the Narmer Palette. But the mystery makes it more powerful. This 
+        stone has outlasted certainty itself. Empires rose and fell, languages were 
+        born and died, and still this macehead endures—a king without a name, a story 
+        without an ending, a moment carved in stone when the world was young.
     """,
     "story5": """
-        High above the valley, where the air was thin and pure, there stood a small cabin. 
-        Here, time moved differently. The mountains spoke in the language of wind and stone, 
-        teaching patience to those who would listen. Sarah came here to find peace, 
-        and the mountains welcomed her like an old friend.
+        Hanging in the Ashmolean is a deerskin mantle embroidered with shells, forming 
+        patterns of a human figure flanked by animals. This is Powhatan's Mantle—or 
+        rather, it might be. The cloak belonged to the Powhatan people of Virginia, 
+        possibly to Chief Powhatan himself, father of Pocahontas, who met the Jamestown 
+        colonists in 1607.
         
-        Each morning, she woke to see peaks painted pink by the sunrise. Eagles soared on 
-        thermals, their cries echoing across the valleys. The only sounds were natural—
-        wind through pine trees, water trickling over rocks, her own steady breathing.
+        The shells tell a story in their arrangement—a cosmology, a map of power, a 
+        world-view sewn into hide. Each shell was carefully selected, pierced, and 
+        attached. The labor represents not just hours but meaning, not just craft but 
+        culture. This was wealth and authority made visible, made wearable.
         
-        In the city, Sarah had forgotten how to hear silence. Here, she remembered. She 
-        remembered how to sit still, how to watch clouds without checking the time, how to 
-        feel small in a way that made her feel connected to something vast and eternal. 
-        The mountain asked nothing of her except to be present. And so she was.
+        The mantle arrived in England in the 1630s, part of John Tradescant's collection 
+        of "rarities and curiosities." But it's not a curiosity—it's a voice. In an era 
+        when Indigenous peoples were being pushed from their lands, this mantle survived, 
+        carrying its maker's vision across the ocean, across centuries. Stand before it 
+        and you're not looking at an artifact. You're receiving a message from a world 
+        that refused to be forgotten, embroidered with shells that shine like stars, 
+        telling stories that shine like truth.
     """,
     "story6": """
-        The city never slept, and neither did Alex. From rooftop parties to late-night 
-        food trucks, from street art to underground music venues, the urban landscape 
-        was an endless adventure. Neon lights reflected in rain-puddles, and every corner 
-        held a new story waiting to unfold.
+        The Abingdon Sword lies in its case, pattern-welded steel from the seventh 
+        century, discovered in a Saxon cemetery. The blade shows the technique of 
+        combining iron and steel, twisted and forged, creating both strength and beauty—
+        the swirling patterns visible even now, like water frozen in metal.
         
-        Tonight, Alex was chasing the perfect shot—the photographer's white whale. The way 
-        the subway steam caught the streetlights, the contrast between the bright storefronts 
-        and the dark alleys, the faces of people living their own epic stories. The city was 
-        a living canvas, constantly repainting itself.
+        This sword was made for a warrior of status, buried with them for the journey 
+        beyond death. The Anglo-Saxon world believed a good sword had a spirit, a 
+        personality. Beowulf spoke of swords by name. This blade likely had a name too, 
+        now lost to time, whispered by voices speaking a language that evolved into 
+        English but would sound alien to modern ears.
         
-        At 3 AM, from a fire escape in the East Side, Alex captured it—the moment when the 
-        city revealed its soul. In the frame: a taxi's red taillights, a couple sharing an 
-        umbrella, steam rising from a manhole, and a thousand lit windows each hiding a 
-        different world. This was why Alex loved the city. It never stopped creating.
+        The sword rested in the earth for thirteen centuries, returning to the darkness 
+        from which its metal was first drawn. When archaeologists uncovered it, they 
+        found corrosion and soil, but beneath—still there—the pattern welding, the 
+        careful craftsmanship, the respect for the warrior it accompanied. Every sword 
+        tells two stories: the life of the one who wielded it, and the skill of the 
+        one who forged it. Both stories are here, waiting in the steel.
     """,
     "story7": """
-        The waves rolled in with hypnotic rhythm, each one carrying away a little more 
-        of yesterday's worries. Elena walked barefoot along the shore, letting the cool 
-        water wash over her feet. The ocean had always been her sanctuary, a place where 
-        she could breathe deeply and remember what truly mattered.
+        The Ashmolean Museum began with John Tradescant's "Ark"—a cabinet of curiosities 
+        assembled in the 1600s, perhaps the first museum collection in England. Tradescant 
+        traveled the world bringing back wonders: a dodo, a volcanic rock from Vesuvius, 
+        a flying squirrel, Guy Fawkes' lantern, Powhatan's mantle, coins, shells, and 
+        countless "rarities" that amazed visitors.
         
-        Seagulls wheeled overhead, their calls mixing with the endless song of the sea. 
-        The horizon stretched forever, reminding her that there was always more world to 
-        explore, more possibilities to discover. The salt air cleared her mind like nothing 
-        else could.
+        In Tradescant's garden in Lambeth, you could see the first pineapple grown in 
+        England, plants from Virginia, flowers from the Mediterranean. His collection 
+        was called "The Ark" because, like Noah's vessel, it preserved specimens of 
+        Earth's diversity. It was science and spectacle combined, an attempt to gather 
+        the whole world under one roof.
         
-        She found a piece of sea glass, worn smooth by thousands of tides—proof that time 
-        and patience could transform sharp edges into something beautiful. Elena pocketed 
-        it and smiled. The ocean was teaching her, as it always did. Let the waves come, 
-        let them go. What matters will remain.
+        When Elias Ashmole inherited and donated the collection to Oxford in 1683, the 
+        Ashmolean Museum was born—the world's first university museum. Tradescant's 
+        curiosity became institution, his personal ark became public treasure. Today, 
+        millions walk through galleries that exist because one man couldn't stop asking 
+        "What else is out there?" The Ark has landed, but the voyage of discovery 
+        continues—every object a port of call, every display case a window to another 
+        world.
     """,
     "story8": """
-        The café was a haven in the concrete jungle. Warm light spilled from its windows 
-        onto the dark street outside. Inside, people sat quietly with their thoughts, 
-        their books, their late-night conversations. The barista knew everyone's order 
-        by heart, and the coffee was always perfect.
+        The Parian Marble, also called the Marmor Parium, is a chronological table carved 
+        in Greek on a marble slab around 264 BCE. It lists dates and events from Greek 
+        mythology and history, beginning with the reign of Cecrops, the first king of 
+        Athens (1581 BCE by its reckoning), down to 264 BCE when it was carved.
         
-        Marcus had been coming here for five years, always sitting at the same corner table. 
-        He'd written half a novel here, had three first dates (one of them stuck), and made 
-        friends with the other regulars—all without planning any of it. The café just had 
-        that effect on people.
+        This isn't just history—it's how ancient Greeks understood their own past. The 
+        marble treats myths and historical events with equal seriousness: the flood of 
+        Deucalion, the founding of the Eleusinian Mysteries, the first Olympiad, the 
+        birth of Homer. To the Greeks, these weren't separate categories. The past was 
+        continuous, divine and human events intertwined.
         
-        Tonight, as rain pattered against the window, Marcus looked around at the other 
-        patrons. A student cramming for exams. An elderly woman with a crossword puzzle. 
-        Two friends laughing over shared secrets. Strangers, all of them, yet somehow 
-        family. The café held them all in its warm embrace, a small island of light in 
-        the rushing river of the city.
+        Discovered on the island of Paros in the 1600s, this fragment came to Oxford 
+        where generations of scholars have puzzled over its dates and entries. It's a 
+        ghost of an ancient library, a bookmark in a civilization's memory. When you 
+        read these carved lines, you're seeing the past through Greek eyes, standing 
+        in their timeline, measuring history by their markers. The marble endures, 
+        still counting, still remembering, a clock that stopped ticking but never 
+        stopped telling time.
     """,
     "story9": """
-        Deep in the ancient forest, where sunlight filtered through a canopy of leaves, 
-        there was magic in the air. Not the flashy kind from storybooks, but the subtle 
-        magic of growth, renewal, and connection. The trees whispered stories to those 
-        who knew how to listen, and the forest held mysteries that time had forgotten.
+        In the Pitt Rivers Museum, dim lighting reveals rows of ceremonial axes—jade, 
+        stone, greenstone—from cultures across the Pacific. These weren't tools for 
+        chopping wood. These were power made tangible, authority carved into stone, 
+        connections between earth and ancestors given physical form.
         
-        Lily had been walking these paths since childhood, but today she saw something new—
-        a circle of mushrooms glowing faintly in the dim light. Fairy ring, her grandmother 
-        had called them. Places where the veil between worlds grew thin. She stepped closer, 
-        and the air shimmered.
+        The Maori mere, the jade clubs of chiefs, were taonga—treasures with their own 
+        mana, their own spiritual essence. They were named, their lineages remembered, 
+        passed down through generations. To hold such an axe was to hold the strength 
+        of those who held it before, to touch a chain of hands stretching back to the 
+        time when the stone was first shaped.
         
-        The forest revealed itself then, not as a collection of trees but as a living network, 
-        each plant connected to every other through roots and fungus, sharing nutrients and 
-        information. Lily stood in the center of it all and felt the forest's ancient 
-        consciousness brush against her own. She was not separate. She had never been separate. 
-        She was part of the forest, and it was part of her.
+        Lieutenant-General Pitt Rivers collected these objects believing they showed 
+        the "evolution" of human culture. He was wrong about that—these aren't primitive 
+        versions of European tools but sophisticated expressions of different worldviews. 
+        Yet his collection preserves something valuable: the diversity of human imagination, 
+        the thousand different ways people have carved meaning into stone. Each axe is a 
+        philosophy made solid. Each blade reflects a different answer to the question: 
+        What is sacred? What is worth making beautiful? What should last?
     """,
     "story10": """
-        The city's heartbeat was fastest here, in the downtown core where ambition 
-        and energy collided. Jordan thrived in this environment, drawing inspiration 
-        from the constant motion, the diverse faces, the sense that anything could happen. 
-        This was where dreams were made, where the future was being written in real-time.
+        In the Museum of the History of Science hangs a blackboard—just a blackboard, 
+        marked with chalk equations, seemingly ordinary. Except these equations were 
+        written by Albert Einstein during a lecture at Oxford on May 16, 1931, exploring 
+        his evolving theories about the expanding universe.
         
-        From the startup office on the 30th floor, Jordan could see the whole sprawl—
-        the financial district's glass towers, the historic neighborhoods with their brownstones, 
-        the river cutting through it all like a silver thread. Somewhere down there, a thousand 
-        stories were unfolding simultaneously.
+        The board was never erased. Someone recognized that history was written there 
+        in chalk dust, that those symbols represented a mind grappling with the nature 
+        of reality itself. Einstein was still refining his ideas about cosmology, still 
+        arguing with the evidence that the universe was expanding—something he'd initially 
+        resisted with his cosmological constant.
         
-        The energy of the city flowed through Jordan like electricity. A meeting with investors. 
-        A breakthrough in the code. A chance encounter with a mentor in an elevator. The city 
-        rewarded those who moved fast, who stayed hungry, who believed that the impossible was 
-        just a problem that hadn't been solved yet. Jordan grinned and dove back into work. 
-        The urban pulse was calling, and there was so much left to build.
+        The chalk is fading now, the equations growing faint. But they remain visible: 
+        mathematics as thought made visible, genius captured mid-lecture, the moment when 
+        Einstein shared his vision of curved spacetime with a room of Oxford scholars. 
+        The blackboard is a window into the process of discovery—not polished theory from 
+        textbooks, but working ideas, hypotheses in progress, the actual chalk-marks of 
+        someone trying to understand the universe. Stand before it and you're attending 
+        that 1931 lecture, watching Einstein think, seeing the moment when human consciousness 
+        reached for the stars and wrote equations to explain their dance.
     """
 }
 
