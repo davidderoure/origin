@@ -26,3 +26,73 @@
         <div class="mood-selector">
             <button type="submit" name="mood" value="1" class="mood-btn" title="Very Low (1)">😢</button>
             <button type="submit" name="mood" value="2" class="mood-btn" title="Low (2)">😕</button>
+            <button type="submit" name="mood" value="3" class="mood-btn" title="Low-Medium (3)">😐</button>
+            <button type="submit" name="mood" value="4" class="mood-btn" title="Below Average (4)">🙂</button>
+            <button type="submit" name="mood" value="5" class="mood-btn" title="Average (5)">😊</button>
+            <button type="submit" name="mood" value="6" class="mood-btn" title="Above Average (6)">😄</button>
+            <button type="submit" name="mood" value="7" class="mood-btn" title="Good (7)">😃</button>
+            <button type="submit" name="mood" value="8" class="mood-btn" title="Very Good (8)">😁</button>
+            <button type="submit" name="mood" value="9" class="mood-btn" title="Great (9)">🤩</button>
+            <button type="submit" name="mood" value="10" class="mood-btn" title="Excellent (10)">🥳</button>
+        </div>
+    </form>
+    
+    <p style="text-align: center; color: #999; font-size: 0.9em; margin-top: 10px;">
+        Select your current mood (optional)
+    </p>
+</div>
+
+<!-- Like Section -->
+<div class="card">
+    <h3 style="margin-top: 0;">❤️ Did you enjoy this story?</h3>
+    
+    {% if already_liked %}
+        <div class="alert alert-success">
+            <strong>✓ You've already liked this story!</strong>
+        </div>
+    {% else %}
+        <form method="POST" action="{{ url_for('like_story', story_id=story.id) }}" style="margin-top: 15px;">
+            <button type="submit" class="btn" style="background: #e91e63; font-size: 1.1em;">
+                ❤️ Like This Story
+            </button>
+        </form>
+        <p style="color: #666; margin-top: 10px; font-size: 0.9em;">
+            Liking stories helps us understand your preferences and recommend similar ones.
+        </p>
+    {% endif %}
+</div>
+
+<!-- Navigation -->
+<div style="margin-top: 30px; text-align: center; padding-top: 20px; border-top: 2px solid #eee;">
+    <h3>What would you like to do next?</h3>
+    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+        <a href="{{ url_for('recommendations') }}" class="btn" style="font-size: 1.1em;">
+            📖 Get More Recommendations
+        </a>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">
+            🏠 Back to Home
+        </a>
+        <a href="{{ url_for('insights') }}" class="btn btn-secondary">
+            📊 View Insights
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Show confirmation when mood or like is submitted
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            // Visual feedback
+            const button = this.querySelector('button[type="submit"]');
+            if (button) {
+                button.style.opacity = '0.6';
+                const originalText = button.innerHTML;
+                button.innerHTML = originalText + ' ✓';
+            }
+        });
+    });
+</script>
+{% endblock %}
