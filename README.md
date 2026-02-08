@@ -1,13 +1,20 @@
-# origin
+## origin
 Prototype recommender code for ORIGIN project
 
 # Demo
+
+The recommender logic is in rec2.py
+
+The demo creates a web server which calls the recommender code. It includes
+25 AI-generated stories for demo and test purposes.
 
 pip install flask
 
 python app.py
 
 Open your browser to: http://localhost:5000
+
+## Experiments in IPC
 
 # Web server for prototyping
 
