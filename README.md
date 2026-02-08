@@ -1,7 +1,7 @@
-## origin
+# origin
 Prototype recommender code for ORIGIN project
 
-# Demo
+## Demo
 
 The recommender logic is in rec2.py
 
@@ -14,9 +14,13 @@ python app.py
 
 Open your browser to: http://localhost:5000
 
-## Experiments in IPC
+# Experiments in IPC
 
-# Web server for prototyping
+This is very simple client-server code using different IPC methods, in order
+to make a preliminary assessment of what would be best for the backend integration
+of the python code to be called by C# and potentially to call C#
+
+## Web server for prototyping
 
 pip install fastapi uvicorn
 
@@ -28,7 +32,7 @@ python server_web.py
 
 http://localhost:8000
 
-# websocket mockup
+## websocket mockup
 
 pip install fastapi uvicorn websockets
 
@@ -40,7 +44,7 @@ Run the client in another terminal:
 
 python client.py
 
-# gRPC mockup
+## gRPC mockup
 
 pip install grpcio 
 pip install grpcio-tools
@@ -57,7 +61,7 @@ Run the client in another terminal:
 
 python client.py
 
-# named pipes and sockets
+## named pipes and sockets
 
 python server_socket.py
 
