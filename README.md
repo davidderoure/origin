@@ -1,9 +1,15 @@
 # origin
 Prototype recommender code for ORIGIN project
 
+## Recommender code
+
+First prototype is in rec1.ipynb for google colab
+
+Second prototype is in rec2.py
+
 ## Demo
 
-The recommender logic is in rec2.py
+Uses the recommender logic in rec2.py
 
 The demo creates a web server which calls the recommender code. It includes
 25 AI-generated stories for demo and test purposes.
