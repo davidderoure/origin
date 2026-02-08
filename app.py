@@ -20,26 +20,69 @@ recommender = StoryRecommender(
 
 # Add sample stories
 def initialize_stories():
+    # Ancient artifacts (6 stories)
     recommender.add_story("story1", "The Alfred Jewel", "ancient", 
                          ["mysterious", "royal", "craftsmanship"])
-    recommender.add_story("story2", "The Last Dodo", "natural", 
-                         ["extinct", "haunting", "loss"])
-    recommender.add_story("story3", "Guy Fawkes' Lantern", "medieval", 
-                         ["conspiracy", "history", "rebellion"])
     recommender.add_story("story4", "The Scorpion Macehead", "ancient", 
                          ["Egyptian", "powerful", "discovery"])
-    recommender.add_story("story5", "Powhatan's Mantle", "cultural", 
-                         ["ceremonial", "heritage", "connection"])
-    recommender.add_story("story6", "The Abingdon Sword", "medieval", 
-                         ["warrior", "crafted", "legendary"])
-    recommender.add_story("story7", "Tradescant's Ark", "natural", 
-                         ["curious", "wondrous", "collection"])
     recommender.add_story("story8", "The Parian Marble", "ancient", 
                          ["chronological", "scholarly", "timeless"])
+    recommender.add_story("story11", "The Minoan Snake Goddess", "ancient", 
+                         ["mystical", "feminine", "ritual"])
+    recommender.add_story("story12", "The Roman Mosaic", "ancient", 
+                         ["artistic", "domestic", "preserved"])
+    recommender.add_story("story13", "The Ure Greek Vase", "ancient", 
+                         ["athletic", "celebration", "beauty"])
+    
+    # Natural history (4 stories)
+    recommender.add_story("story2", "The Last Dodo", "natural", 
+                         ["extinct", "haunting", "loss"])
+    recommender.add_story("story7", "Tradescant's Ark", "natural", 
+                         ["curious", "wondrous", "collection"])
+    recommender.add_story("story14", "The Ichthyosaur", "natural", 
+                         ["prehistoric", "marine", "fossilized"])
+    recommender.add_story("story15", "The Giant Irish Deer", "natural", 
+                         ["magnificent", "ice-age", "extinct"])
+    
+    # Medieval (4 stories)
+    recommender.add_story("story3", "Guy Fawkes' Lantern", "medieval", 
+                         ["conspiracy", "history", "rebellion"])
+    recommender.add_story("story6", "The Abingdon Sword", "medieval", 
+                         ["warrior", "crafted", "legendary"])
+    recommender.add_story("story16", "The Illuminated Manuscript", "medieval", 
+                         ["sacred", "illustrated", "devotional"])
+    recommender.add_story("story17", "The Lewis Chessmen", "medieval", 
+                         ["carved", "strategic", "mysterious"])
+    
+    # Cultural (4 stories)
+    recommender.add_story("story5", "Powhatan's Mantle", "cultural", 
+                         ["ceremonial", "heritage", "connection"])
     recommender.add_story("story9", "Ceremonial Axes", "cultural", 
                          ["ritual", "spiritual", "ancestral"])
+    recommender.add_story("story18", "The Shrunken Heads", "cultural", 
+                         ["transformative", "warrior", "ritual"])
+    recommender.add_story("story19", "The Samurai Armor", "cultural", 
+                         ["honor", "protective", "disciplined"])
+    
+    # Scientific (3 stories)
     recommender.add_story("story10", "Einstein's Blackboard", "scientific", 
-                         ["exciting", "fast-paced", "dynamic"])
+                         ["genius", "lecture", "revelation"])
+    recommender.add_story("story20", "The Astrolabe", "scientific", 
+                         ["navigational", "astronomical", "precise"])
+    recommender.add_story("story21", "Carroll's Camera", "scientific", 
+                         ["photographic", "innovative", "capturing"])
+    
+    # Artistic (3 stories)
+    recommender.add_story("story22", "The Light of the World", "artistic", 
+                         ["symbolic", "glowing", "spiritual"])
+    recommender.add_story("story23", "Michelangelo's Drawing", "artistic", 
+                         ["masterful", "anatomical", "renaissance"])
+    recommender.add_story("story24", "Islamic Ceramic Bowl", "artistic", 
+                         ["geometric", "calligraphic", "luminous"])
+    
+    # Literary (1 story)
+    recommender.add_story("story25", "Shakespeare's First Folio", "literary", 
+                         ["dramatic", "immortal", "eloquent"])
 
 initialize_stories()
 
@@ -62,6 +105,7 @@ STORY_CONTENT = {
         reflection in its glass case, you become part of its endless story—another 
         pair of eyes that has beheld its beauty, another moment in its long existence.
     """,
+    
     "story2": """
         The Oxford Dodo stands in the Museum of Natural History, the most famous 
         extinct bird in the world. Unlike the complete skeletons elsewhere, this is 
@@ -81,6 +125,7 @@ STORY_CONTENT = {
         that we don't yet realize we should save? The dodo watches with its preserved 
         eye, a witness to its own species' ending, a warning written in feathers and bone.
     """,
+    
     "story3": """
         In the Ashmolean Museum rests an unassuming lantern—metal, practical, 
         unremarkable except for one detail: it was carried by Guy Fawkes on the night 
@@ -99,6 +144,7 @@ STORY_CONTENT = {
         the British sky, this lantern sits quiet in its case—the authentic flame that 
         nearly ignited revolution, now cold, now still, now only light in memory.
     """,
+    
     "story4": """
         The Scorpion Macehead sits among Egyptian treasures in the Ashmolean, carved 
         from limestone over 5,000 years ago. It depicts a king—possibly named Scorpion, 
@@ -118,6 +164,7 @@ STORY_CONTENT = {
         born and died, and still this macehead endures—a king without a name, a story 
         without an ending, a moment carved in stone when the world was young.
     """,
+    
     "story5": """
         Hanging in the Ashmolean is a deerskin mantle embroidered with shells, forming 
         patterns of a human figure flanked by animals. This is Powhatan's Mantle—or 
@@ -138,6 +185,7 @@ STORY_CONTENT = {
         that refused to be forgotten, embroidered with shells that shine like stars, 
         telling stories that shine like truth.
     """,
+    
     "story6": """
         The Abingdon Sword lies in its case, pattern-welded steel from the seventh 
         century, discovered in a Saxon cemetery. The blade shows the technique of 
@@ -157,6 +205,7 @@ STORY_CONTENT = {
         tells two stories: the life of the one who wielded it, and the skill of the 
         one who forged it. Both stories are here, waiting in the steel.
     """,
+    
     "story7": """
         The Ashmolean Museum began with John Tradescant's "Ark"—a cabinet of curiosities 
         assembled in the 1600s, perhaps the first museum collection in England. Tradescant 
@@ -178,6 +227,7 @@ STORY_CONTENT = {
         continues—every object a port of call, every display case a window to another 
         world.
     """,
+    
     "story8": """
         The Parian Marble, also called the Marmor Parium, is a chronological table carved 
         in Greek on a marble slab around 264 BCE. It lists dates and events from Greek 
@@ -198,6 +248,7 @@ STORY_CONTENT = {
         still counting, still remembering, a clock that stopped ticking but never 
         stopped telling time.
     """,
+    
     "story9": """
         In the Pitt Rivers Museum, dim lighting reveals rows of ceremonial axes—jade, 
         stone, greenstone—from cultures across the Pacific. These weren't tools for 
@@ -218,6 +269,7 @@ STORY_CONTENT = {
         philosophy made solid. Each blade reflects a different answer to the question: 
         What is sacred? What is worth making beautiful? What should last?
     """,
+    
     "story10": """
         In the Museum of the History of Science hangs a blackboard—just a blackboard, 
         marked with chalk equations, seemingly ordinary. Except these equations were 
@@ -238,6 +290,332 @@ STORY_CONTENT = {
         someone trying to understand the universe. Stand before it and you're attending 
         that 1931 lecture, watching Einstein think, seeing the moment when human consciousness 
         reached for the stars and wrote equations to explain their dance.
+    """,
+    
+    "story11": """
+        In the Ashmolean's Aegean collection stands a small faience figurine—the Minoan 
+        Snake Goddess, or perhaps a priestess. She rises barely eight inches tall, yet 
+        she commands attention. Her arms are raised, serpents coiling around them, her 
+        bodice open in the Minoan style, her eyes fixed on eternity. She was made on 
+        Crete around 1600 BCE, when Minoan civilization was at its height.
+        
+        The snakes she holds weren't symbols of evil but of rebirth, transformation, 
+        the earth's power. In Minoan culture, women held positions of religious authority, 
+        and the snake goddess represents a world where divine power wore a female face. 
+        Her bare breasts aren't scandalous but sacred—this is fertility, life-force, 
+        the creative power of the universe made manifest.
+        
+        She was found in the palace at Knossos, in a repository of sacred objects. For 
+        three and a half thousand years, she waited in darkness. When British archaeologist 
+        Arthur Evans uncovered her, he found a civilization that challenged Victorian 
+        assumptions about the past. Here was a Bronze Age culture where women weren't 
+        subordinate, where the goddess was supreme. The snake priestess stands in her 
+        case now, arms forever raised, serpents forever coiled, carrying secrets of a 
+        world where divinity and femininity were one.
+    """,
+    
+    "story12": """
+        Beneath your feet at the Ashmolean might have been a Roman mosaic much like 
+        the one displayed on the wall—geometric patterns, mythological scenes, all 
+        assembled from thousands of tiny tesserae, each carefully placed. This particular 
+        mosaic dates from the fourth century CE, excavated from a Romano-British villa 
+        in Oxfordshire.
+        
+        Imagine the craftsman on his knees, setting each small stone cube, creating from 
+        fragments a picture that would last millennia. The mosaic depicts Bacchus, god 
+        of wine, surrounded by creatures and vines. It graced the floor of a wealthy 
+        Roman-Briton's dining room, where guests reclined on couches, eating and drinking 
+        while literally standing on divine imagery.
+        
+        The villa collapsed, the empire fell, and the mosaic was buried under centuries 
+        of English soil. Plows passed over it, crops grew above it, history moved on. 
+        Yet the tesserae remained in place, patient, waiting. When archaeologists 
+        revealed it again, the colors were still bright—reds, yellows, blacks, blues. 
+        A message from Roman Britain: we were here, we lived well, we made beauty that 
+        would outlast us. The mosaic has fulfilled that promise, surviving longer than 
+        the empire that created it.
+    """,
+    
+    "story13": """
+        The Ure Greek Vase in the Ashmolean is a red-figure krater, painted in Athens 
+        around 460 BCE. It shows athletes at the gymnasium—young men, perfectly rendered, 
+        their muscles defined with confident brushstrokes, engaged in the activities that 
+        consumed the Greek ideal: training, competing, striving for excellence.
+        
+        The vase-painter knew anatomy like a sculptor. Each figure moves with grace, 
+        frozen mid-action yet somehow still alive. One youth scrapes oil from his skin 
+        with a strigil. Another holds a discus. A trainer watches critically. This wasn't 
+        just decoration—this was propaganda for a way of life, where the perfection of 
+        the body reflected the perfection of the soul.
+        
+        The vase would have been used at symposia, those legendary Greek drinking parties 
+        where men reclined and discussed philosophy, poetry, and politics. As wine was 
+        poured from this krater, the athletes on its surface reminded viewers of Greek 
+        values: discipline, competition, beauty, and the pursuit of arete—excellence in 
+        all things. Twenty-five centuries later, the vase still preaches that sermon, 
+        the athletes still frozen in their perfect youth, the Greek dream still visible 
+        in glaze and clay.
+    """,
+    
+    "story14": """
+        The ichthyosaur fossil in Oxford's Natural History Museum stretches across its 
+        display, a marine reptile from the age of dinosaurs, when oceans teemed with 
+        creatures stranger than myth. This particular specimen was found along the 
+        Jurassic Coast, possibly by Mary Anning, the legendary fossil hunter whose 
+        discoveries revolutionized paleontology in the 1800s.
+        
+        Look at the creature's shape—streamlined like a dolphin, because evolution 
+        solves the same problems with the same solutions. The ichthyosaur's ancestors 
+        were land reptiles that returned to the sea, their legs becoming flippers, their 
+        bodies adapting to an aquatic life. For 150 million years, ichthyosaurs ruled 
+        the Mesozoic seas, then vanished in a mass extinction.
+        
+        When Mary Anning found these "fish lizards," science was still debating whether 
+        extinction was even possible. Religious authorities argued that God would never 
+        let His creations die out. But here was proof—an entire order of animals, 
+        magnificently adapted, hugely successful, yet gone forever. The ichthyosaur 
+        teaches a hard lesson: adaptation is no guarantee of survival. Success is 
+        temporary. Everything that lives will one day be a fossil, or not even that—
+        just a gap in the record, a question mark in stone.
+    """,
+    
+    "story15": """
+        The Giant Irish Deer rises in the Natural History Museum, its antlers spreading 
+        twelve feet across—the largest of any known deer species. Despite the name, it 
+        lived across Europe and Asia during the last ice age, vanishing about 7,700 years 
+        ago. Those antlers, magnificent and deadly, may have contributed to its extinction.
+        
+        Each year, the stag grew those massive antlers, using enormous amounts of calcium 
+        and energy. They were weapons, yes, but also advertisements—signs of fitness, 
+        health, genetic superiority. The bigger the antlers, the more attractive to females, 
+        the more successful in breeding. Sexual selection drove the antlers larger and larger, 
+        generation by generation, until they became almost absurdly huge.
+        
+        Then the ice age ended. Forests grew denser. Those antlers that had been such an 
+        advantage became a liability—catching on branches, requiring too much energy in a 
+        changing climate. Evolution's triumph became evolution's trap. The Giant Irish Deer 
+        stands as a warning: sometimes the very thing that makes you successful can become 
+        the thing that dooms you. Adapt or die. And sometimes, you've adapted yourself into 
+        a corner. The antlers remain, spread wide in permanent display—beautiful, impressive, 
+        and extinct.
+    """,
+    
+    "story16": """
+        In the Bodleian Library's collection rests a medieval illuminated manuscript, its 
+        pages glowing with gold leaf and vibrant pigments ground from lapis lazuli, 
+        cinnabar, and verdigris. Each page is a garden of letters, where text blossoms 
+        into elaborate borders, where capital letters become architectural wonders 
+        inhabited by tiny creatures.
+        
+        This Book of Hours dates from the fifteenth century, made for a wealthy patron 
+        who commissioned months or years of a scribe's life, an illuminator's artistry, 
+        a binder's craft. It was a prayer book, meant to guide its owner through the 
+        daily devotions—prayers for specific hours of the day, psalms for every occasion, 
+        calendars marking saints' feast days.
+        
+        Look closely at the margins. There you'll find the sacred mixed with the profane—
+        angels alongside grotesques, biblical scenes beside hunting rabbits and feuding 
+        snails. Medieval scribes had a sense of humor. They spent their lives copying 
+        holy words, but in the margins, they let their imaginations run wild. The 
+        manuscript is more than a prayer book. It's a window into medieval minds, where 
+        devotion and whimsy lived side by side, where every page was both worship and art, 
+        where the word of God deserved to be beautiful.
+    """,
+    
+    "story17": """
+        The Lewis Chessmen sit in the Ashmolean—not the famous majority in the British 
+        Museum, but a few precious pieces from the same twelfth-century cache. Carved 
+        from walrus ivory, these chess pieces were found buried on the Isle of Lewis in 
+        Scotland in 1831. They may have been a merchant's stock, hidden and never retrieved, 
+        waiting eight centuries to be discovered.
+        
+        The craftsmanship is extraordinary. Kings sit on thrones, looking worried. Queens 
+        rest their chins on their hands, contemplating strategy. Berserkers bite their 
+        shields in battle fury. These aren't abstract game pieces—they're characters, each 
+        with personality, each telling a story. They were probably carved in Trondheim, 
+        Norway, during the age of Norse influence in the northern isles.
+        
+        What's haunting is the emotion in those tiny faces. The carver understood human 
+        expression—anxiety, determination, rage. Eight hundred years ago, someone sculpted 
+        these pieces with such skill that we still see the personalities. They were meant 
+        for a game, yes, but they became art. And they pose a mystery: why were they buried? 
+        Who was meant to retrieve them? What interrupted that plan? The chessmen don't answer. 
+        They just sit on their board, frozen mid-game, waiting for a player who never came.
+    """,
+    
+    "story18": """
+        In the Pitt Rivers Museum, in dim cases that visitors sometimes miss, are tsantsas—
+        shrunken heads from the Shuar people of Ecuador and Peru. These aren't curiosities 
+        or grotesqueries. They're sacred objects, treated with deep respect by those who 
+        made them, representing a complex worldview about life, death, and the soul.
+        
+        The Shuar believed that shrinking an enemy's head trapped the victim's avenging 
+        spirit, preventing it from taking revenge. The process was elaborate, ritualized, 
+        taking days of careful work. The tsantsa was then kept as protection for the 
+        community. This wasn't cruelty—it was spiritual technology, a way of dealing with 
+        the dangerous forces unleashed by killing.
+        
+        The museum labels warn that many "shrunken heads" in collections are fakes, made 
+        for the tourist trade after Europeans developed a ghoulish fascination with them. 
+        But the authentic tsantsas here represent genuine cultural practices, now largely 
+        abandoned. They ask difficult questions: What makes a cultural practice sacred 
+        versus savage? Who decides? The heads preserve not just physical remains but the 
+        memory of a worldview—where the boundary between the living and the dead was 
+        porous, where enemies remained dangerous even after death, where elaborate rituals 
+        kept communities safe from spiritual harm.
+    """,
+    
+    "story19": """
+        The samurai armor in the Ashmolean stands on display, layer upon layer of lacquered 
+        metal and silk cord, a complete suit of armor from Edo-period Japan. The kabuto 
+        helmet rises to a point, the mempo face-mask bears a frozen expression of fierce 
+        determination, and the do chest-plate is decorated with the owner's mon—family crest.
+        
+        Each piece of armor was crafted not just for protection but for meaning. The colors 
+        indicated rank, the decorations told of lineage and achievement. Wearing such armor 
+        wasn't simply practical—it was a statement of identity, honor, and commitment to 
+        bushido, the way of the warrior. The samurai lived by a code: loyalty, courage, 
+        self-discipline, and an acceptance of death that bordered on romance.
+        
+        This armor survived the samurai class itself. When the Meiji Restoration modernized 
+        Japan in the 1860s, the samurai were abolished, their swords declared illegal, their 
+        way of life made obsolete by rifles and conscript armies. Yet the armor remains, 
+        preserved by collectors who recognized that it represented more than military 
+        equipment. It was art, philosophy, and history made wearable. The empty suit stands 
+        at attention, waiting for a warrior who will never return, a symbol of a code that 
+        proved both beautiful and ultimately unsustainable in the face of modernity.
+    """,
+    
+    "story20": """
+        The astrolabe in the Museum of the History of Science is a medieval Islamic 
+        instrument, brass engraved with Arabic inscriptions, made in Persia around 1300 CE. 
+        It's both a scientific instrument and a work of art—functional precision married 
+        to decorative beauty in a way that exemplifies Islamic scientific tradition.
+        
+        An astrolabe could determine the time, locate the positions of stars and planets, 
+        calculate the direction to Mecca for prayer, measure heights and distances, and 
+        even serve as an analog computer for astronomical calculations. It compressed the 
+        celestial sphere onto a flat plane through stereographic projection—a mathematical 
+        elegance that let travelers carry the heavens in their hands.
+        
+        Islamic scholars preserved and expanded Greek astronomical knowledge during Europe's 
+        Middle Ages, adding their own innovations and observations. This astrolabe represents 
+        that golden age of Islamic science—when Baghdad and Cordoba were centers of learning, 
+        when observatories dotted the Islamic world, when scholars of all religions collaborated 
+        on understanding the cosmos. The instrument still works. Its pointers still align with 
+        stars, its scales still calculate accurately. Eight centuries of dust haven't dimmed 
+        its precision. It's a reminder that scientific truth transcends culture, and that beauty 
+        and function need not be separate.
+    """,
+    
+    "story21": """
+        Charles Dodgson—better known as Lewis Carroll—was an Oxford mathematics don, but he 
+        was also a pioneer photographer. The Museum of the History of Science holds one of his 
+        cameras, along with examples of his work. In the 1850s-1870s, photography was cutting-edge 
+        technology, and Carroll mastered it with the same precision he brought to logic and 
+        mathematics.
+        
+        His subjects were often children, particularly Alice Liddell, the real girl who inspired 
+        Alice's Adventures in Wonderland. Carroll's photographs show technical skill but also 
+        artistic vision—careful composition, attention to light, an ability to capture personality. 
+        He would pose his subjects as characters from stories, creating narrative photographs 
+        decades before cinema made moving pictures possible.
+        
+        The camera itself is a wooden box, plates and chemicals required, long exposure times 
+        demanding stillness from subjects. Photography then was a chemical adventure, a physical 
+        challenge, an art requiring patience. Carroll would disappear under a dark cloth, emerging 
+        with glass plates that had captured moments in silver salts. The camera captures something 
+        else too—the intersection of science and art, mathematics and imagination, that defined 
+        Carroll himself. The man who created Wonderland was also the man measuring light, mixing 
+        chemicals, calculating exposures. The camera proves that logic and fantasy can exist in 
+        the same hands.
+    """,
+    
+    "story22": """
+        "The Light of the World" by William Holman Hunt hangs in Keble College Chapel, one 
+        of the most reproduced religious paintings in history. Christ stands at a weed-covered 
+        door, holding a lantern, knocking. The door has no handle on the outside—it can only 
+        be opened from within. The symbolism is clear: Christ knocks, but the soul must choose 
+        to let him in.
+        
+        Hunt was a Pre-Raphaelite, committed to painting with intense realism and symbolic 
+        depth. He worked on the painting at night, by actual lantern-light, to get the 
+        illumination exactly right. Every detail carries meaning—the crown of thorns suggests 
+        suffering, the priestly robes suggest authority, the overgrown door suggests a soul 
+        long neglected. Yet Christ waits patiently, lantern in hand, ready to illuminate 
+        the darkness.
+        
+        Hunt painted two more versions of this image later in life, and countless prints were 
+        made. The painting toured the British Empire, was sent to battlefields as inspiration, 
+        hung in churches worldwide. Whatever one's religious beliefs, the image has power: a 
+        figure of patience and light, standing in darkness, waiting for a door to open. The 
+        lantern glows, the light falls on the door, the knock echoes across centuries. The 
+        painting asks a question: What doors in ourselves remain closed? What light are we 
+        keeping out?
+    """,
+    
+    "story23": """
+        The Ashmolean holds several drawings by Michelangelo—quick sketches in red chalk, 
+        studies for sculptures that would become masterpieces. These aren't finished artworks. 
+        They're thinking made visible, the master at work, trying angles, testing proportions, 
+        working out how marble could become flesh.
+        
+        One drawing shows studies of a male torso—muscles understood with anatomical precision, 
+        line after line exploring the structure beneath the skin. Michelangelo famously dissected 
+        corpses to understand human anatomy, knowledge forbidden yet essential for achieving the 
+        realism his sculptures demanded. The Renaissance believed in studying nature directly, 
+        even when nature meant dead bodies and church prohibition.
+        
+        What's remarkable is the confidence in these lines. Michelangelo drew quickly, surely, 
+        his hand moving with the certainty of absolute mastery. Yet even here, you can see him 
+        thinking—a line tried and abandoned, an angle reconsidered, the work of refinement. 
+        These are sketches, but they're Michelangelo sketches, which means they're better than 
+        most artists' finished works. The drawing is a window into genius at work—not the 
+        polished marble of the Sistine Chapel, but the moment before creation, when the hand 
+        is still searching for the perfect line, and the perfect line is just about to be found.
+    """,
+    
+    "story24": """
+        The Islamic ceramic bowl in the Ashmolean glows with turquoise and cobalt blue, covered 
+        in geometric patterns and Arabic calligraphy that flows like water. Made in Persia around 
+        the 13th century, it exemplifies Islamic art's genius—transforming functional objects into 
+        vehicles for spiritual contemplation through pattern, color, and sacred text.
+        
+        Islamic art often avoids depicting living creatures, instead exploring the infinite through 
+        geometry. These patterns—interlocking stars, tessellating shapes, arabesques that could 
+        continue forever—represent the mathematical perfection underlying creation. The patterns 
+        suggest infinity, the underlying order of the universe, the divine geometry that structures 
+        reality itself.
+        
+        The calligraphy wrapping the bowl's rim might be poetry, Quranic verses, or blessings for 
+        the owner. In Islamic culture, beautiful writing is itself a form of worship—God's words 
+        deserve to be rendered beautifully. The bowl was functional, yes, meant to hold food or 
+        water. But it was also meant to elevate daily life, to make every meal an aesthetic 
+        experience, to surround the mundane with the beautiful. The bowl proclaims that there need 
+        be no separation between art and life, between beauty and utility, between the practical 
+        and the divine. Everything can be made beautiful. Everything deserves to be.
+    """,
+    
+    "story25": """
+        The Bodleian Library holds a Shakespeare First Folio, published in 1623, seven years after 
+        the playwright's death. Without this book, half of Shakespeare's plays would have been lost. 
+        "Macbeth," "The Tempest," "As You Like It," "Julius Caesar"—all unpublished at Shakespeare's 
+        death, preserved only because his fellow actors, John Heminges and Henry Condell, collected 
+        and printed them.
+        
+        The Folio was expensive—a luxury item, not everyone's paperback. It cost about one pound, 
+        when a skilled worker earned thirty pounds a year. But Heminges and Condell believed 
+        Shakespeare's "trifles" deserved preservation. They wrote in the preface that they published 
+        these plays "onely to keepe the memory of so worthy a Friend & Fellow alive as was our 
+        Shakespeare."
+        
+        Open the Folio and you're reading the same words that readers have encountered for four 
+        centuries. The same "To be or not to be," the same "We are such stuff as dreams are made on," 
+        the same "If music be the food of love, play on." The paper is thick, the type uneven, the 
+        spelling archaic. But the words—the words pulse with life. Shakespeare never saw this book. 
+        He had no idea his plays would be read four hundred years later, studied in every language, 
+        performed on every continent. The Folio made him immortal. "He was not of an age," Heminges 
+        and Condell wrote, "but for all time." The book in its case proves them right.
     """
 }
 
